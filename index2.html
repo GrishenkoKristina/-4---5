@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>URBANMEN — О нас</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style2.css">
+</head>
+<body>
+
+<header>
+  <div class="logo">URBANMEN</div>
+  <nav>
+    <a href="index.html" class="nav-link">Главная</a>
+    <a href="index2.html">О нас</a>
+    <a href="index3.html">Магазин</a>
+    <a href="index4.html">Вход</a>
+  </nav>
+</header>
+
+<section class="about fade-in">
+  <h1>О нас</h1>
+
+  <div class="about-block fade-in">
+    <img src="imaje/5.jpg" alt="Производство">
+    <div class="about-text">
+      <h2>Наше производство</h2>
+      <p>Мы создаем мужскую одежду с вниманием к деталям и качеству материалов. Каждая вещь тщательно проверяется и соответствует современным стандартам стиля.</p>
+    </div>
+  </div>
+
+  <div class="about-block fade-in">
+    <div class="about-text">
+      <h2>Философия бренда</h2>
+      <p>URBANMEN — бренд для современных мужчин, ценящих стиль, качество и свободу самовыражения. Мы объединяем классику и современность, создавая уникальные образы.</p>
+    </div>
+    <img src="imaje/1.jpg" alt="Философия">
+  </div>
+</section>
+
+<footer>
+  <div><strong>URBANMEN</strong></div>
+  <div>
+    <p>Email: info@urbanmen.ru</p>
+    <p>Телефон: +7 999 123 45 67</p>
+    <p>Instagram: @urbanmen_official</p>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting) e.target.classList.add('show');});});
+document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+</script>
+
+</body>
+</html>

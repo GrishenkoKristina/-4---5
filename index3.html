@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>URBANMEN — Магазин</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style3.css">
+</head>
+<body>
+
+<header>
+  <div class="logo">URBANMEN</div>
+  <nav>
+    <a href="index.html" class="nav-link">Главная</a>
+    <a href="index2.html">О нас</a>
+    <a href="index3.html">Магазин</a>
+    <a href="index4.html">Вход</a>
+  </nav>
+</header>
+
+<section class="shop fade-in">
+  <h1>Магазин</h1>
+  <div class="shop-grid">
+    <div class="product-card" data-id="1" data-name="Черная куртка" data-price="7500">
+      <img src="imaje/1.jpg" alt="Черная куртка">
+      <p>Черная куртка</p>
+      <p>Цена: 7500₽</p>
+      <button class="buy-btn">Купить</button>
+    </div>
+    <div class="product-card" data-id="2" data-name="Серые джинсы" data-price="3300">
+      <img src="imaje/2.jpg" alt="Серые джинсы">
+      <p>Серые джинсы</p>
+      <p>Цена: 3300₽</p>
+      <button class="buy-btn">Купить</button>
+    </div>
+    <div class="product-card" data-id="3" data-name="Белая рубашка" data-price="2200">
+      <img src="imaje/3.jpg" alt="Белая рубашка">
+      <p>Белая рубашка</p>
+      <p>Цена: 2200₽</p>
+      <button class="buy-btn">Купить</button>
+    </div>
+    <div class="product-card" data-id="4" data-name="Черные кеды" data-price="4500">
+      <img src="imaje/4.jpg" alt="Черные кеды">
+      <p>Черные кеды</p>
+      <p>Цена: 4500₽</p>
+      <button class="buy-btn">Купить</button>
+    </div>
+  </div>
+</section>
+
+<div class="cart fade-in">
+  <h3>Корзина</h3>
+  <div id="cart-items"></div>
+  <p><strong>Итого: <span id="cart-total">0</span>₽</strong></p>
+</div>
+
+<footer>
+  <div><strong>URBANMEN</strong></div>
+  <div>
+    <p>Email: info@urbanmen.ru</p>
+    <p>Телефон: +7 999 123 45 67</p>
+    <p>Instagram: @urbanmen_official</p>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting) e.target.classList.add('show');});});
+document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+
+// Корзина
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+function updateCart(){
+  const cartItems=document.getElementById('cart-items');
+  const cartTotal=document.getElementById('cart-total');
+  cartItems.innerHTML='';let total=0;
+  cart.forEach((item,index)=>{total+=item.price;
+    const div=document.createElement('div');div.classList.add('cart-item');
+    div.innerHTML=`<span>${item.name} - ${item.price}₽</span><button data-index="${index}">X</button>`;
+    cartItems.appendChild(div);
+  });
+  cartTotal.textContent=total;
+  localStorage.setItem('cart',JSON.stringify(cart));
+}
+document.querySelectorAll('.buy-btn').forEach(btn=>{
+  btn.addEventListener('click',e=>{
+    const card=e.target.closest('.product-card');
+    const product={id:card.dataset.id,name:card.dataset.name,price:parseInt(card.dataset.price)};
+    cart.push(product); updateCart(); alert(`${product.name} добавлен в корзину!`);
+  });
+});
+document.getElementById('cart-items').addEventListener('click',e=>{
+  if(e.target.tagName==='BUTTON'){ cart.splice(e.target.dataset.index,1); updateCart(); }
+});
+updateCart();
+</script>
+
+</body>
+</html>

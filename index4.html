@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>URBANMEN — Вход / Регистрация</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style4.css">
+</head>
+<body>
+
+<div class="login-container">
+  <h1>Вход / Регистрация</h1>
+  <input type="text" placeholder="Имя пользователя">
+  <input type="email" placeholder="Email">
+  <input type="password" placeholder="Пароль">
+  <button id="register-btn">Зарегистрироваться</button>
+  <p>Уже зарегистрированы? <a href="index.html">Войти</a></p>
+</div>
+
+<script>
+document.getElementById('register-btn').addEventListener('click', () => {
+  alert('Регистрация успешна!');
+  window.location.href = 'index.html';
+});
+</script>
+
+</body>
+</html>
